@@ -25,7 +25,7 @@ Copyright 2012 Justus Winter <4winter@informatik.uni-hamburg.de>
 import sys
 
 if sys.version_info[0] == 2:
-    from ConfigParser import SafeConfigParser
+    from ConfigParser import ConfigParser
 
     class Python3StringMixIn(object):
         def __str__(self):
@@ -47,7 +47,7 @@ if sys.version_info[0] == 2:
 
         return value
 else:
-    from configparser import SafeConfigParser
+    from configparser import ConfigParser
 
     class Python3StringMixIn(object):
         def __str__(self):
@@ -66,6 +66,6 @@ else:
 
         return value.encode('utf-8', 'replace')
 
-# We import the SafeConfigParser class on behalf of other code to cope
+# We import the ConfigParser class on behalf of other code to cope
 # with the differences between Python 2 and 3.
-SafeConfigParser # avoid warning about unused import
+ConfigParser # avoid warning about unused import

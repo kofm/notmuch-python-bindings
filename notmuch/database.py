@@ -21,7 +21,7 @@ import os
 import codecs
 import warnings
 from ctypes import c_char_p, c_void_p, c_uint, byref, POINTER
-from .compat import SafeConfigParser
+from .compat import ConfigParser
 from .globals import (
     nmlib,
     Enum,
@@ -668,10 +668,10 @@ class Database(object):
         """ Reads a user's notmuch config and returns his db location
 
         Throws a NotmuchError if it cannot find it"""
-        config = SafeConfigParser()
+        config = ConfigParser()
         conf_f = os.getenv('NOTMUCH_CONFIG',
                            os.path.expanduser('~/.notmuch-config'))
-        config.readfp(codecs.open(conf_f, 'r', 'utf-8'))
+        config.read_file(codecs.open(conf_f, 'r', 'utf-8'))
         if not config.has_option('database', 'path'):
             raise NotmuchError(message="No DB path specified"
                                        " and no user default found")
